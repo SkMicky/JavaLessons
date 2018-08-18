@@ -8,8 +8,10 @@ import java.util.Queue;
 
 public class ConnectionPool {
     private static volatile ConnectionPool uniqueInstance;
-    Queue<Connection> availableConnections = new ArrayDeque<>();
+    private Queue<Connection> availableConnections = new ArrayDeque<>();
     private String url;
+    private String username = "root";
+    private String password = "root";
 
     private ConnectionPool(String url, String driver, int connectionsCount) {
         try {
@@ -19,14 +21,14 @@ public class ConnectionPool {
         }
         this.url = url;
         for (int i = 0; i < connectionsCount; i++) {
-            availableConnections.add(getConnect());
+            availableConnections.add(createConnect());
         }
     }
 
-    public Connection getConnect() {
+    private Connection createConnect() {
         Connection con = null;
         try {
-            con = DriverManager.getConnection(url);
+            con = DriverManager.getConnection(url, username, password);
             System.out.println("Connected!");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -37,8 +39,12 @@ public class ConnectionPool {
 
     public static ConnectionPool getUniqueInstance() {
         if(uniqueInstance == null){
-            uniqueInstance = new ConnectionPool("jdbc:mysql://localhost:3306/crm?autoReconnect=true&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC root root", "com.mysql.cj.jdbc.Driver", 15);
+            uniqueInstance = new ConnectionPool("jdbc:mysql://localhost:3306/crm?autoReconnect=true&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC", "com.mysql.cj.jdbc.Driver", 15);
         }
         return uniqueInstance;
+    }
+
+    public void getConnection(){
+        availableConnections.poll();
     }
 }
