@@ -1,0 +1,36 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<Terminals>
+    <Terminal id = "1">
+        <TerminalAdress>
+            <city>Астана</city>
+            <street>Ш.Калдаяков</street>
+            <building>15</building>
+        </TerminalAdress>
+        <nameOfService>Погашение кредита</nameOfService>
+        <Client id = "101">
+            <lastName>Иванов</lastName>
+            <firstName>Пётр</firstName>
+            <parentName>Геннадьевич</parentName>
+            <phoneNumber>87769458215</phoneNumber>
+        </Client>
+        <dateOfMadenService>23.07.2018 21:43</dateOfMadenService>
+        <amount>23500</amount>
+    </Terminal>
+    <Terminal id = "2">
+        <TerminalAdress>
+            <city>Караганда</city>
+            <street>Н.Абдирова</street>
+            <building>23</building>
+        </TerminalAdress>
+        <nameOfService>Оплата телефона</nameOfService>
+        <Client id = "201">
+            <lastName>Бектемиров</lastName>
+            <firstName>Бакытжан</firstName>
+            <parentName>Усенулы</parentName>
+            <phoneNumber>87713198562</phoneNumber>
+        </Client>
+        <dateOfMadenService>15.08.2018 14:58</dateOfMadenService>
+        <amount>1500</amount>
+    </Terminal>
+</Terminals>
